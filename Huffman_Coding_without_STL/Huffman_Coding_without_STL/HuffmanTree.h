@@ -1,4 +1,4 @@
-#ifndef _HUFFMAN_TREE_H
+п»ї#ifndef _HUFFMAN_TREE_H
 #define _HUFFMAN_TREE_H
 #include <iostream>
 #include <queue>
@@ -16,20 +16,20 @@ public:
 	HuffmanTree& operator=(const HuffmanTree& tree) = delete;
 	HuffmanTree& operator=(HuffmanTree&& tree) = delete;
 
-	void assembleTree(const size_t* frequencies, const unsigned int& size); // Построение дерева
-	void getCodes(CodeVector* codes) const; // Получение массива кодов символов
-	void outputDecodingData(std::istream& in, std::ostream& out) const; // Вывод раскодированной строки
-	size_t getNumberSymbol() const { return nSymbol_; }; // Получить количество символов в алфавите
+	void assembleTree(const size_t* frequencies, const unsigned int& size); // РџРѕСЃС‚СЂРѕРµРЅРёРµ РґРµСЂРµРІР°
+	void getCodes(CodeVector* codes) const; // РџРѕР»СѓС‡РµРЅРёРµ РјР°СЃСЃРёРІР° РєРѕРґРѕРІ СЃРёРјРІРѕР»РѕРІ
+	void outputDecodingData(std::istream& in, std::ostream& out) const; // Р’С‹РІРѕРґ СЂР°СЃРєРѕРґРёСЂРѕРІР°РЅРЅРѕР№ СЃС‚СЂРѕРєРё
+	size_t getNumberSymbol() const { return nSymbol_; }; // РџРѕР»СѓС‡РёС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРёРјРІРѕР»РѕРІ РІ Р°Р»С„Р°РІРёС‚Рµ
 
 private:
 	struct Node
 	{
-		size_t frequence_; // Частота
-		unsigned char symbol_; // Символ
+		size_t frequence_; // Р§Р°СЃС‚РѕС‚Р°
+		unsigned char symbol_; // РЎРёРјРІРѕР»
 		std::shared_ptr<Node> left_;
 		std::shared_ptr<Node> right_;
 
-		// Конструкторы узла
+		// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ СѓР·Р»Р°
 		Node() : frequence_(0), symbol_(0), left_(nullptr), right_(nullptr) {};
 		Node(size_t frequence, unsigned char symbol) :
 			frequence_(frequence), symbol_(symbol), left_(nullptr), right_(nullptr) {};
@@ -44,9 +44,9 @@ private:
 	};
 
 	std::shared_ptr<Node> root_;
-	unsigned int nSymbol_; // Количество символов в алфавите
+	unsigned int nSymbol_; // РљРѕР»РёС‡РµСЃС‚РІРѕ СЃРёРјРІРѕР»РѕРІ РІ Р°Р»С„Р°РІРёС‚Рµ
 
-	void getCodes(CodeVector* codes, CodeVector& code, const std::shared_ptr<Node>& current) const; // Получение массива кодов символов
+	void getCodes(CodeVector* codes, CodeVector& code, const std::shared_ptr<Node>& current) const; // РџРѕР»СѓС‡РµРЅРёРµ РјР°СЃСЃРёРІР° РєРѕРґРѕРІ СЃРёРјРІРѕР»РѕРІ
 };
 
 #endif

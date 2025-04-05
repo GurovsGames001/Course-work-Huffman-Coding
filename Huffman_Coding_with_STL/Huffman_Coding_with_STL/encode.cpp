@@ -1,12 +1,12 @@
-#include "functions.h"
+п»ї#include "functions.h"
 
-void getFrequenciesForCoding(std::array<size_t, SIZE_ARRAY_SYMBOL>& frequencies, std::istream& in); // Получение частот символов
-void outputEncodedData(const std::array<std::vector<bool>, SIZE_ARRAY_SYMBOL>& codes, std::istream& in, std::ostream& out); // Создание закодированной строки
-bool getFileNamesForCoding(std::ifstream& in, std::ofstream& out); // Получение имён файлов
+void getFrequenciesForCoding(std::array<size_t, SIZE_ARRAY_SYMBOL>& frequencies, std::istream& in); // РџРѕР»СѓС‡РµРЅРёРµ С‡Р°СЃС‚РѕС‚ СЃРёРјРІРѕР»РѕРІ
+void outputEncodedData(const std::array<std::vector<bool>, SIZE_ARRAY_SYMBOL>& codes, std::istream& in, std::ostream& out); // РЎРѕР·РґР°РЅРёРµ Р·Р°РєРѕРґРёСЂРѕРІР°РЅРЅРѕР№ СЃС‚СЂРѕРєРё
+bool getFileNamesForCoding(std::ifstream& in, std::ofstream& out); // РџРѕР»СѓС‡РµРЅРёРµ РёРјС‘РЅ С„Р°Р№Р»РѕРІ
 
 void encode()
 {
-	// Открытие входного и выходного файлов
+	// РћС‚РєСЂС‹С‚РёРµ РІС…РѕРґРЅРѕРіРѕ Рё РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»РѕРІ
 	std::ifstream fin;
 	std::ofstream fout;
 	if (!(getFileNamesForCoding(fin, fout)))
@@ -14,26 +14,26 @@ void encode()
 		return;
 	}
 
-	std::cout << "Начинаю кодирование...\n";
+	std::cout << "РќР°С‡РёРЅР°СЋ РєРѕРґРёСЂРѕРІР°РЅРёРµ...\n";
 	auto startTime = std::chrono::steady_clock::now();
 
-	// Получение частот символов
+	// РџРѕР»СѓС‡РµРЅРёРµ С‡Р°СЃС‚РѕС‚ СЃРёРјРІРѕР»РѕРІ
 	std::array<size_t, SIZE_ARRAY_SYMBOL> frequencies = { 0 };
 	getFrequenciesForCoding(frequencies, fin);
 
-	// Построение дерева Хаффмана
+	// РџРѕСЃС‚СЂРѕРµРЅРёРµ РґРµСЂРµРІР° РҐР°С„С„РјР°РЅР°
 	HuffmanTree codingTree;
 	codingTree.assembleTree(frequencies);
 
-	// Получение массива с кодами Хаффмана
+	// РџРѕР»СѓС‡РµРЅРёРµ РјР°СЃСЃРёРІР° СЃ РєРѕРґР°РјРё РҐР°С„С„РјР°РЅР°
 	std::array<std::vector<bool>, SIZE_ARRAY_SYMBOL> codes;
 	codingTree.getCodes(codes);
 
-	// Сброс потока для входного файла
+	// РЎР±СЂРѕСЃ РїРѕС‚РѕРєР° РґР»СЏ РІС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°
 	fin.clear();
 	fin.seekg(0, fin.beg);
 
-	// Запись символов и их частот в файл
+	// Р—Р°РїРёСЃСЊ СЃРёРјРІРѕР»РѕРІ Рё РёС… С‡Р°СЃС‚РѕС‚ РІ С„Р°Р№Р»
 	size_t nSymbol = codingTree.getNumberSymbol();
 	size_t numberSymbol = 0;
 	size_t sizeSymbol = sizeof(char);
@@ -51,23 +51,23 @@ void encode()
 			numberSymbol++;
 		});
 
-	// Вывод закодированных данных в файл
+	// Р’С‹РІРѕРґ Р·Р°РєРѕРґРёСЂРѕРІР°РЅРЅС‹С… РґР°РЅРЅС‹С… РІ С„Р°Р№Р»
 	outputEncodedData(codes, fin, fout);
 
-	// Закрытие входного и выходного файлов
+	// Р—Р°РєСЂС‹С‚РёРµ РІС…РѕРґРЅРѕРіРѕ Рё РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»РѕРІ
 	fout.close();
 	fin.close();
 
 	auto endTime = std::chrono::steady_clock::now();
 
 	StreamGuard guard(std::cout);
-	std::cout << "Кодирование успешно завершено\n";
-	std::cout << "Закодированные данные записаны в файл\n";
-	std::cout << "Время кодирования: " << std::fixed << std::setprecision(3)
+	std::cout << "РљРѕРґРёСЂРѕРІР°РЅРёРµ СѓСЃРїРµС€РЅРѕ Р·Р°РІРµСЂС€РµРЅРѕ\n";
+	std::cout << "Р—Р°РєРѕРґРёСЂРѕРІР°РЅРЅС‹Рµ РґР°РЅРЅС‹Рµ Р·Р°РїРёСЃР°РЅС‹ РІ С„Р°Р№Р»\n";
+	std::cout << "Р’СЂРµРјСЏ РєРѕРґРёСЂРѕРІР°РЅРёСЏ: " << std::fixed << std::setprecision(3)
 		<< ((std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime).count()) / 1000.0) << std::endl;
 }
 
-// Получение частот символов
+// РџРѕР»СѓС‡РµРЅРёРµ С‡Р°СЃС‚РѕС‚ СЃРёРјРІРѕР»РѕРІ
 void getFrequenciesForCoding(std::array<size_t, SIZE_ARRAY_SYMBOL>& frequencies, std::istream& in)
 {
 	in >> std::noskipws;
@@ -79,7 +79,7 @@ void getFrequenciesForCoding(std::array<size_t, SIZE_ARRAY_SYMBOL>& frequencies,
 	in >> std::skipws;
 }
 
-// Создание закодированной строки
+// РЎРѕР·РґР°РЅРёРµ Р·Р°РєРѕРґРёСЂРѕРІР°РЅРЅРѕР№ СЃС‚СЂРѕРєРё
 void outputEncodedData(const std::array<std::vector<bool>, SIZE_ARRAY_SYMBOL>& codes, std::istream& in, std::ostream& out)
 {
 	size_t countBit = 0;
@@ -108,12 +108,12 @@ void outputEncodedData(const std::array<std::vector<bool>, SIZE_ARRAY_SYMBOL>& c
 	}
 }
 
-// Получение имён файлов
+// РџРѕР»СѓС‡РµРЅРёРµ РёРјС‘РЅ С„Р°Р№Р»РѕРІ
 bool getFileNamesForCoding(std::ifstream& fin, std::ofstream& fout)
 {
-	// Открытие входного файла
-	std::cout << "\nДля отмены данной операции введите команду BACK";
-	std::cout << "\nВведите название файла с исходными данными: ";
+	// РћС‚РєСЂС‹С‚РёРµ РІС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°
+	std::cout << "\nР”Р»СЏ РѕС‚РјРµРЅС‹ РґР°РЅРЅРѕР№ РѕРїРµСЂР°С†РёРё РІРІРµРґРёС‚Рµ РєРѕРјР°РЅРґСѓ BACK";
+	std::cout << "\nР’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° СЃ РёСЃС…РѕРґРЅС‹РјРё РґР°РЅРЅС‹РјРё: ";
 
 	std::string inOutFileName;
 	std::getline(std::cin, inOutFileName, '\n'); // input_data.txt
@@ -121,13 +121,13 @@ bool getFileNamesForCoding(std::ifstream& fin, std::ofstream& fout)
 	{
 		return false;
 	}
-	std::cout << "\nОткрываю входной файл...";
+	std::cout << "\nРћС‚РєСЂС‹РІР°СЋ РІС…РѕРґРЅРѕР№ С„Р°Р№Р»...";
 	fin.open(inOutFileName);
 
 	while (!fin.is_open())
 	{
-		std::cout << "\nERROR: Не удалось открыть данный файл. Попробуйте снова";
-		std::cout << "\nВведите название файла с исходными данными: ";
+		std::cout << "\nERROR: РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ РґР°РЅРЅС‹Р№ С„Р°Р№Р». РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°";
+		std::cout << "\nР’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° СЃ РёСЃС…РѕРґРЅС‹РјРё РґР°РЅРЅС‹РјРё: ";
 		std::getline(std::cin, inOutFileName, '\n');
 		if (inOutFileName == "BACK")
 		{
@@ -135,18 +135,18 @@ bool getFileNamesForCoding(std::ifstream& fin, std::ofstream& fout)
 		}
 		fin.open(inOutFileName);
 	}
-	std::cout << "\nВходной файл " << inOutFileName << " успешно открыт\n";
+	std::cout << "\nР’С…РѕРґРЅРѕР№ С„Р°Р№Р» " << inOutFileName << " СѓСЃРїРµС€РЅРѕ РѕС‚РєСЂС‹С‚\n";
 
-	// Открытие выходного файла
-	std::cout << "\nВведите название файла для закодированных данных: ";
+	// РћС‚РєСЂС‹С‚РёРµ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°
+	std::cout << "\nР’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° РґР»СЏ Р·Р°РєРѕРґРёСЂРѕРІР°РЅРЅС‹С… РґР°РЅРЅС‹С…: ";
 	std::getline(std::cin, inOutFileName, '\n');
 	if (inOutFileName == "BACK")
 	{
 		return false;
 	}
-	std::cout << "\nОткрываю выходной файл...";
+	std::cout << "\nРћС‚РєСЂС‹РІР°СЋ РІС‹С…РѕРґРЅРѕР№ С„Р°Р№Р»...";
 	fout.open(inOutFileName, std::ofstream::binary);
-	std::cout << "\nВыходной файл " << inOutFileName << " успешно открыт\n";
+	std::cout << "\nР’С‹С…РѕРґРЅРѕР№ С„Р°Р№Р» " << inOutFileName << " СѓСЃРїРµС€РЅРѕ РѕС‚РєСЂС‹С‚\n";
 
 	return true;
 }

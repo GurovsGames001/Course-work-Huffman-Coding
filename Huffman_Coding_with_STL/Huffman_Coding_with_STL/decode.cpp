@@ -1,11 +1,11 @@
-#include "functions.h"
+п»ї#include "functions.h"
 
-void getFrequenciesForDecoding(std::array<size_t, SIZE_ARRAY_SYMBOL>& frequencies, std::istream& in); // Получение частот символов
-bool getFileNamesForDecoding(std::ifstream& in, std::ofstream& out); // Получение имён файлов
+void getFrequenciesForDecoding(std::array<size_t, SIZE_ARRAY_SYMBOL>& frequencies, std::istream& in); // РџРѕР»СѓС‡РµРЅРёРµ С‡Р°СЃС‚РѕС‚ СЃРёРјРІРѕР»РѕРІ
+bool getFileNamesForDecoding(std::ifstream& in, std::ofstream& out); // РџРѕР»СѓС‡РµРЅРёРµ РёРјС‘РЅ С„Р°Р№Р»РѕРІ
 
 void decode()
 {
-	// Открытие входного и выходного файлов
+	// РћС‚РєСЂС‹С‚РёРµ РІС…РѕРґРЅРѕРіРѕ Рё РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»РѕРІ
 	std::ifstream fin;
 	std::ofstream fout;
 	if (!(getFileNamesForDecoding(fin, fout)))
@@ -13,34 +13,34 @@ void decode()
 		return;
 	}
 
-	std::cout << "Начинаю декодирование...\n";
+	std::cout << "РќР°С‡РёРЅР°СЋ РґРµРєРѕРґРёСЂРѕРІР°РЅРёРµ...\n";
 	auto startTime = std::chrono::steady_clock::now();
 
-	// Считывание частот символов и создание массива с ними
+	// РЎС‡РёС‚С‹РІР°РЅРёРµ С‡Р°СЃС‚РѕС‚ СЃРёРјРІРѕР»РѕРІ Рё СЃРѕР·РґР°РЅРёРµ РјР°СЃСЃРёРІР° СЃ РЅРёРјРё
 	std::array<size_t, SIZE_ARRAY_SYMBOL> frequencies = { 0 };
 	getFrequenciesForDecoding(frequencies, fin);
 
-	// Построение дерева Хаффмана
+	// РџРѕСЃС‚СЂРѕРµРЅРёРµ РґРµСЂРµРІР° РҐР°С„С„РјР°РЅР°
 	HuffmanTree decodingTree;
 	decodingTree.assembleTree(frequencies);
 
-	// Вывод раскодированных данных в файл
+	// Р’С‹РІРѕРґ СЂР°СЃРєРѕРґРёСЂРѕРІР°РЅРЅС‹С… РґР°РЅРЅС‹С… РІ С„Р°Р№Р»
 	decodingTree.outputDecodingData(fin, fout);
 
-	// Закрытие входного и выходного файлов
+	// Р—Р°РєСЂС‹С‚РёРµ РІС…РѕРґРЅРѕРіРѕ Рё РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»РѕРІ
 	fout.close();
 	fin.close();
 
 	auto endTime = std::chrono::steady_clock::now();
 
 	StreamGuard guard(std::cout);
-	std::cout << "Декодирование успешно завершено\n";
-	std::cout << "Раскодированные данные записаны в файл\n";
-	std::cout << "Время декодирования: " << std::fixed << std::setprecision(3)
+	std::cout << "Р”РµРєРѕРґРёСЂРѕРІР°РЅРёРµ СѓСЃРїРµС€РЅРѕ Р·Р°РІРµСЂС€РµРЅРѕ\n";
+	std::cout << "Р Р°СЃРєРѕРґРёСЂРѕРІР°РЅРЅС‹Рµ РґР°РЅРЅС‹Рµ Р·Р°РїРёСЃР°РЅС‹ РІ С„Р°Р№Р»\n";
+	std::cout << "Р’СЂРµРјСЏ РґРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ: " << std::fixed << std::setprecision(3)
 		<< ((std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime).count()) / 1000.0) << std::endl;
 }
 
-// Получение частот символов
+// РџРѕР»СѓС‡РµРЅРёРµ С‡Р°СЃС‚РѕС‚ СЃРёРјРІРѕР»РѕРІ
 void getFrequenciesForDecoding(std::array<size_t, SIZE_ARRAY_SYMBOL>& frequencies, std::istream& in)
 {
 	size_t nSymbol = 0;
@@ -57,29 +57,29 @@ void getFrequenciesForDecoding(std::array<size_t, SIZE_ARRAY_SYMBOL>& frequencie
 	}
 }
 
-// Получение имён файлов
+// РџРѕР»СѓС‡РµРЅРёРµ РёРјС‘РЅ С„Р°Р№Р»РѕРІ
 bool getFileNamesForDecoding(std::ifstream& fin, std::ofstream& fout)
 {
-	// Открытие входного файла
+	// РћС‚РєСЂС‹С‚РёРµ РІС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°
 	bool isFileOpen = false;
 	std::string inOutFileName;
 	char tempID[21] = "\0";
 
-	std::cout << "\nДля отмены данной операции введите команду BACK";
+	std::cout << "\nР”Р»СЏ РѕС‚РјРµРЅС‹ РґР°РЅРЅРѕР№ РѕРїРµСЂР°С†РёРё РІРІРµРґРёС‚Рµ РєРѕРјР°РЅРґСѓ BACK";
 	while (!isFileOpen)
 	{
-		std::cout << "\nВведите название файла с закодированными данными: ";
+		std::cout << "\nР’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° СЃ Р·Р°РєРѕРґРёСЂРѕРІР°РЅРЅС‹РјРё РґР°РЅРЅС‹РјРё: ";
 		std::getline(std::cin, inOutFileName, '\n'); // encoded_data.txt
 		if (inOutFileName == "BACK")
 		{
 			return false;
 		}
-		std::cout << "\nОткрываю входной файл...";
+		std::cout << "\nРћС‚РєСЂС‹РІР°СЋ РІС…РѕРґРЅРѕР№ С„Р°Р№Р»...";
 		fin.open(inOutFileName, std::ifstream::binary);
 		while (!fin.is_open())
 		{
-			std::cout << "\nERROR: Не удалось открыть данный файл. Попробуйте снова\n";
-			std::cout << "\nВведите название файла с закодированными данными: ";
+			std::cout << "\nERROR: РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ РґР°РЅРЅС‹Р№ С„Р°Р№Р». РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°\n";
+			std::cout << "\nР’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° СЃ Р·Р°РєРѕРґРёСЂРѕРІР°РЅРЅС‹РјРё РґР°РЅРЅС‹РјРё: ";
 			std::getline(std::cin, inOutFileName, '\n');
 			if (inOutFileName == "BACK")
 			{
@@ -90,7 +90,7 @@ bool getFileNamesForDecoding(std::ifstream& fin, std::ofstream& fout)
 		fin.read(tempID, strlen(ID));
 		if (strcmp(tempID, ID) != 0)
 		{
-			std::cout << "\nERROR: Данный файл не является закодированным. Попробуйте снова\n";
+			std::cout << "\nERROR: Р”Р°РЅРЅС‹Р№ С„Р°Р№Р» РЅРµ СЏРІР»СЏРµС‚СЃСЏ Р·Р°РєРѕРґРёСЂРѕРІР°РЅРЅС‹Рј. РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°\n";
 			fin.close();
 		}
 		else
@@ -99,18 +99,18 @@ bool getFileNamesForDecoding(std::ifstream& fin, std::ofstream& fout)
 		}
 	}
 
-	std::cout << "\nВходной файл " << inOutFileName << " успешно открыт\n";
+	std::cout << "\nР’С…РѕРґРЅРѕР№ С„Р°Р№Р» " << inOutFileName << " СѓСЃРїРµС€РЅРѕ РѕС‚РєСЂС‹С‚\n";
 
-	// Открытие выходного файла
-	std::cout << "\nВведите название файла для раскодированных данных: ";
+	// РћС‚РєСЂС‹С‚РёРµ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°
+	std::cout << "\nР’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° РґР»СЏ СЂР°СЃРєРѕРґРёСЂРѕРІР°РЅРЅС‹С… РґР°РЅРЅС‹С…: ";
 	std::getline(std::cin, inOutFileName, '\n'); // output_data.txt
 	if (inOutFileName == "BACK")
 	{
 		return false;
 	}
-	std::cout << "\nОткрываю выходной файл...";
+	std::cout << "\nРћС‚РєСЂС‹РІР°СЋ РІС‹С…РѕРґРЅРѕР№ С„Р°Р№Р»...";
 	fout.open(inOutFileName);
-	std::cout << "\nВыходной файл " << inOutFileName << " успешно открыт\n";
+	std::cout << "\nР’С‹С…РѕРґРЅРѕР№ С„Р°Р№Р» " << inOutFileName << " СѓСЃРїРµС€РЅРѕ РѕС‚РєСЂС‹С‚\n";
 
 	return true;
 }

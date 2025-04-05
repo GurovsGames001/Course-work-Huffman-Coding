@@ -1,10 +1,10 @@
-#include "functions.h"
+п»ї#include "functions.h"
 
-bool getFileNamesForCompare(std::ifstream& fin1, std::ifstream& fin2); // Получение имён файлов
+bool getFileNamesForCompare(std::ifstream& fin1, std::ifstream& fin2); // РџРѕР»СѓС‡РµРЅРёРµ РёРјС‘РЅ С„Р°Р№Р»РѕРІ
 
 void compare()
 {
-	// Открытие файлов
+	// РћС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»РѕРІ
 	std::ifstream fin1;
 	std::ifstream fin2;
 
@@ -13,8 +13,8 @@ void compare()
 		return;
 	}
 
-	// Сравнение файлов
-	std::cout << "\nНачинаю сравнение файлов...\n";
+	// РЎСЂР°РІРЅРµРЅРёРµ С„Р°Р№Р»РѕРІ
+	std::cout << "\nРќР°С‡РёРЅР°СЋ СЃСЂР°РІРЅРµРЅРёРµ С„Р°Р№Р»РѕРІ...\n";
 
 	bool isEqual = true;
 	char c1 = 0;
@@ -33,23 +33,23 @@ void compare()
 		isEqual = false;
 	}
 
-	std::cout << "Сравнение выполнено\n";
+	std::cout << "РЎСЂР°РІРЅРµРЅРёРµ РІС‹РїРѕР»РЅРµРЅРѕ\n";
 	if (isEqual)
 	{
-		std::cout << "Файлы имеют одинаковые наборы данных\n";
+		std::cout << "Р¤Р°Р№Р»С‹ РёРјРµСЋС‚ РѕРґРёРЅР°РєРѕРІС‹Рµ РЅР°Р±РѕСЂС‹ РґР°РЅРЅС‹С…\n";
 	}
 	else
 	{
-		std::cout << "Файлы имеют разные наборы данных\n";
+		std::cout << "Р¤Р°Р№Р»С‹ РёРјРµСЋС‚ СЂР°Р·РЅС‹Рµ РЅР°Р±РѕСЂС‹ РґР°РЅРЅС‹С…\n";
 	}
 }
 
-// Получение имён файлов
+// РџРѕР»СѓС‡РµРЅРёРµ РёРјС‘РЅ С„Р°Р№Р»РѕРІ
 bool getFileNamesForCompare(std::ifstream& fin1, std::ifstream& fin2)
 {
-	// Открытие первого файла
-	std::cout << "\nДля отмены данной операции введите команду BACK";
-	std::cout << "\nВведите название первого файла: ";
+	// РћС‚РєСЂС‹С‚РёРµ РїРµСЂРІРѕРіРѕ С„Р°Р№Р»Р°
+	std::cout << "\nР”Р»СЏ РѕС‚РјРµРЅС‹ РґР°РЅРЅРѕР№ РѕРїРµСЂР°С†РёРё РІРІРµРґРёС‚Рµ РєРѕРјР°РЅРґСѓ BACK";
+	std::cout << "\nР’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РїРµСЂРІРѕРіРѕ С„Р°Р№Р»Р°: ";
 
 	std::string fileName;
 	std::getline(std::cin, fileName, '\n');
@@ -61,8 +61,8 @@ bool getFileNamesForCompare(std::ifstream& fin1, std::ifstream& fin2)
 
 	while (!fin1.is_open())
 	{
-		std::cout << "\nERROR: Не удалось открыть данный файл. Попробуйте снова";
-		std::cout << "\nВведите название первого файла: ";
+		std::cout << "\nERROR: РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ РґР°РЅРЅС‹Р№ С„Р°Р№Р». РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°";
+		std::cout << "\nР’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РїРµСЂРІРѕРіРѕ С„Р°Р№Р»Р°: ";
 		std::getline(std::cin, fileName, '\n');
 		if (fileName == "BACK")
 		{
@@ -71,8 +71,8 @@ bool getFileNamesForCompare(std::ifstream& fin1, std::ifstream& fin2)
 		fin1.open(fileName);
 	}
 
-	// Открытие второго файла
-	std::cout << "\nВведите название второго файла: ";
+	// РћС‚РєСЂС‹С‚РёРµ РІС‚РѕСЂРѕРіРѕ С„Р°Р№Р»Р°
+	std::cout << "\nР’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РІС‚РѕСЂРѕРіРѕ С„Р°Р№Р»Р°: ";
 	std::getline(std::cin, fileName, '\n');
 	if (fileName == "BACK")
 	{
@@ -82,8 +82,8 @@ bool getFileNamesForCompare(std::ifstream& fin1, std::ifstream& fin2)
 
 	while (!fin2.is_open())
 	{
-		std::cout << "\nERROR: Не удалось открыть данный файл. Попробуйте снова";
-		std::cout << "\nВведите название второго файла: ";
+		std::cout << "\nERROR: РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ РґР°РЅРЅС‹Р№ С„Р°Р№Р». РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°";
+		std::cout << "\nР’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РІС‚РѕСЂРѕРіРѕ С„Р°Р№Р»Р°: ";
 		std::getline(std::cin, fileName, '\n');
 		if (fileName == "BACK")
 		{

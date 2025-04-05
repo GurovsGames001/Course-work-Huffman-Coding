@@ -1,4 +1,4 @@
-#ifndef _FUNCTIONS_H
+п»ї#ifndef _FUNCTIONS_H
 #define _FUNCTIONS_H
 #include <iostream>
 #include <fstream>
@@ -11,8 +11,8 @@
 #include "HuffmanTree.h"
 #include "StreamGuard.h"
 
-const size_t SIZE_ARRAY_SYMBOL = 256; // Размер алфавита ASCII 
-const char ID[21] = "d/g5y09v$4nf$jkf$hg%"; // id закодированного файла
+const size_t SIZE_ARRAY_SYMBOL = 256; // Р Р°Р·РјРµСЂ Р°Р»С„Р°РІРёС‚Р° ASCII 
+const char ID[21] = "d/g5y09v$4nf$jkf$hg%"; // id Р·Р°РєРѕРґРёСЂРѕРІР°РЅРЅРѕРіРѕ С„Р°Р№Р»Р°
 
 void encode();
 void decode();

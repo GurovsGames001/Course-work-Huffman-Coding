@@ -1,11 +1,11 @@
-#include "HuffmanTree.h"
+п»ї#include "HuffmanTree.h"
 
-// Построение дерева
+// РџРѕСЃС‚СЂРѕРµРЅРёРµ РґРµСЂРµРІР°
 void HuffmanTree::assembleTree(const std::array<size_t, 256>& frequencies)
 {
 	std::priority_queue<std::shared_ptr<Node>, std::vector<std::shared_ptr<Node>>, HuffmanComparator> queue;
 
-	// Создание узлов
+	// РЎРѕР·РґР°РЅРёРµ СѓР·Р»РѕРІ
 	size_t numberSymbol = 0;
 	std::for_each(frequencies.begin(), frequencies.end(), 
 		[&queue, &numberSymbol](const int& frequence)
@@ -20,7 +20,7 @@ void HuffmanTree::assembleTree(const std::array<size_t, 256>& frequencies)
 
 	nSymbol_ = queue.size();
 
-	// Построение дерева
+	// РџРѕСЃС‚СЂРѕРµРЅРёРµ РґРµСЂРµРІР°
 	while (queue.size() != 1)
 	{
 		std::shared_ptr<Node> node = std::make_shared<Node>();
@@ -41,7 +41,7 @@ void HuffmanTree::assembleTree(const std::array<size_t, 256>& frequencies)
 	queue.pop();
 }
 
-// Получение массива кодов символов
+// РџРѕР»СѓС‡РµРЅРёРµ РјР°СЃСЃРёРІР° РєРѕРґРѕРІ СЃРёРјРІРѕР»РѕРІ
 void HuffmanTree::getCodes(std::array<std::vector<bool>, 256>& codes) const
 {
 	std::vector<bool> code;
@@ -51,7 +51,7 @@ void HuffmanTree::getCodes(std::array<std::vector<bool>, 256>& codes) const
 	getCodes(codes, code, current);
 }
 
-// Получение массива кодов символов
+// РџРѕР»СѓС‡РµРЅРёРµ РјР°СЃСЃРёРІР° РєРѕРґРѕРІ СЃРёРјРІРѕР»РѕРІ
 void HuffmanTree::getCodes(std::array<std::vector<bool>, 256>& codes, std::vector<bool>& code, const std::shared_ptr<Node>& current) const
 {
 	if (current->left_ != nullptr)
@@ -78,7 +78,7 @@ void HuffmanTree::getCodes(std::array<std::vector<bool>, 256>& codes, std::vecto
 	}
 }
 
-// Вывод раскодированной строки
+// Р’С‹РІРѕРґ СЂР°СЃРєРѕРґРёСЂРѕРІР°РЅРЅРѕР№ СЃС‚СЂРѕРєРё
 void HuffmanTree::outputDecodingData(std::istream& in, std::ostream& out) const
 {
 	std::shared_ptr<Node> currentNode = root_;

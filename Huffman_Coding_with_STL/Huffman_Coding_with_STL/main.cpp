@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <string>
 #include "functions.h"
 #include "HuffmanTree.h"
@@ -20,7 +20,7 @@ int main()
 
 		while (!isExit)
 		{
-			std::cout << "\nÂâåäèòå êîìàíäó: ";
+			std::cout << "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñƒ: ";
 			std::string command;
 			std::getline(std::cin, command, '\n');
 			if (command == "EXIT")
@@ -36,7 +36,7 @@ int main()
 
 	catch (...)
 	{
-		std::cerr << "ERROR: ×òî-òî ïîøëî íå òàê...\n";
+		std::cerr << "ERROR: Ð§Ñ‚Ð¾-Ñ‚Ð¾ Ð¿Ð¾ÑˆÐ»Ð¾ Ð½Ðµ Ñ‚Ð°Ðº...\n";
 		return -1;
 	}
 
@@ -46,13 +46,13 @@ int main()
 inline void printMenu()
 {
 	std::cout << "---------------------------------------------------------------\n";
-	std::cout << "  Äîáðî ïîæàëîâàòü â ïðîãðàììó êîäèðîâàíèÿ òåêñòà ïî Õàôôìàíó  \n";
+	std::cout << "  Ð”Ð¾Ð±Ñ€Ð¾ Ð¿Ð¾Ð¶Ð°Ð»Ð¾Ð²Ð°Ñ‚ÑŒ Ð² Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñƒ ÐºÐ¾Ð´Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Ñ‚ÐµÐºÑÑ‚Ð° Ð¿Ð¾ Ð¥Ð°Ñ„Ñ„Ð¼Ð°Ð½Ñƒ  \n";
 	std::cout << "---------------------------------------------------------------\n";
-	std::cout << "Ñïèñîê êîìàíä:\n";
-	std::cout << " 1) ENCODE - çàêîäèðîâàòü òåêñò èç ôàéëà\n";
-	std::cout << " 2) DECODE - ðàñêîäèðîâàòü òåêñò èç ôàéëà\n";
-	std::cout << " 3) COMPARE - ñðàâíèòü ïîñèìâîëüíî äâà ôàéëà\n";
-	std::cout << " 4) EXIT - âûéòè èç ïðîãðàììû\n";
+	std::cout << "Ð¡Ð¿Ð¸ÑÐ¾Ðº ÐºÐ¾Ð¼Ð°Ð½Ð´:\n";
+	std::cout << " 1) ENCODE - Ð·Ð°ÐºÐ¾Ð´Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ñ‚ÐµÐºÑÑ‚ Ð¸Ð· Ñ„Ð°Ð¹Ð»Ð°\n";
+	std::cout << " 2) DECODE - Ñ€Ð°ÑÐºÐ¾Ð´Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ñ‚ÐµÐºÑÑ‚ Ð¸Ð· Ñ„Ð°Ð¹Ð»Ð°\n";
+	std::cout << " 3) COMPARE - ÑÑ€Ð°Ð²Ð½Ð¸Ñ‚ÑŒ Ð¿Ð¾ÑÐ¸Ð¼Ð²Ð¾Ð»ÑŒÐ½Ð¾ Ð´Ð²Ð° Ñ„Ð°Ð¹Ð»Ð°\n";
+	std::cout << " 4) EXIT - Ð²Ñ‹Ð¹Ñ‚Ð¸ Ð¸Ð· Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹\n";
 }
 
 inline void executeCommand(const std::string& command)

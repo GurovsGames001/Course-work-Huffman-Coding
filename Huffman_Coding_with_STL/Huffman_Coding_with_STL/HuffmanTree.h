@@ -1,4 +1,4 @@
-#ifndef _HUFFMAN_TREE_H
+п»ї#ifndef _HUFFMAN_TREE_H
 #define _HUFFMAN_TREE_H
 #include <array>
 #include <vector>
@@ -14,10 +14,10 @@ public:
 	HuffmanTree(HuffmanTree& tree) = delete;
 	~HuffmanTree() { root_ = nullptr; };
 
-	void assembleTree(const std::array<size_t, 256>& frequencies); // Построение дерева
-	void getCodes(std::array<std::vector<bool>, 256>& codes) const; // Получение массива кодов символов
-	void outputDecodingData(std::istream& in, std::ostream& out) const; // Вывод раскодированной строки
-	size_t getNumberSymbol() const { return nSymbol_; }; // Получить количество символов в алфавите
+	void assembleTree(const std::array<size_t, 256>& frequencies); // РџРѕСЃС‚СЂРѕРµРЅРёРµ РґРµСЂРµРІР°
+	void getCodes(std::array<std::vector<bool>, 256>& codes) const; // РџРѕР»СѓС‡РµРЅРёРµ РјР°СЃСЃРёРІР° РєРѕРґРѕРІ СЃРёРјРІРѕР»РѕРІ
+	void outputDecodingData(std::istream& in, std::ostream& out) const; // Р’С‹РІРѕРґ СЂР°СЃРєРѕРґРёСЂРѕРІР°РЅРЅРѕР№ СЃС‚СЂРѕРєРё
+	size_t getNumberSymbol() const { return nSymbol_; }; // РџРѕР»СѓС‡РёС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРёРјРІРѕР»РѕРІ РІ Р°Р»С„Р°РІРёС‚Рµ
 
 private:
 	struct Node
@@ -25,13 +25,13 @@ private:
 		using ptrNode = std::shared_ptr<Node>;
 		using ptrParentNode = std::weak_ptr<Node>;
 
-		size_t frequence_; // Частота
-		unsigned char symbol_; // Символ
+		size_t frequence_; // Р§Р°СЃС‚РѕС‚Р°
+		unsigned char symbol_; // РЎРёРјРІРѕР»
 		ptrNode left_;
 		ptrNode right_;
 		ptrParentNode p_;
 
-		// Конструкторы узла
+		// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ СѓР·Р»Р°
 		Node() : frequence_(0), symbol_(0), left_(nullptr), right_(nullptr), p_() {};
 		Node(int frequence, char symbol) :
 			frequence_(frequence), symbol_(symbol), left_(nullptr), right_(nullptr), p_() {};
@@ -46,9 +46,9 @@ private:
 	};
 
 	std::shared_ptr<Node> root_;
-	size_t nSymbol_; // Количество символов в алфавите
+	size_t nSymbol_; // РљРѕР»РёС‡РµСЃС‚РІРѕ СЃРёРјРІРѕР»РѕРІ РІ Р°Р»С„Р°РІРёС‚Рµ
 
-	void getCodes(std::array<std::vector<bool>, 256>& codes, std::vector<bool>& code, const std::shared_ptr<Node>& current) const; // Получение массива кодов символов
+	void getCodes(std::array<std::vector<bool>, 256>& codes, std::vector<bool>& code, const std::shared_ptr<Node>& current) const; // РџРѕР»СѓС‡РµРЅРёРµ РјР°СЃСЃРёРІР° РєРѕРґРѕРІ СЃРёРјРІРѕР»РѕРІ
 };
 
 #endif

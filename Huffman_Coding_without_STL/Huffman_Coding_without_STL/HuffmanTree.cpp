@@ -1,11 +1,11 @@
-#include "HuffmanTree.h"
+п»ї#include "HuffmanTree.h"
 
-// Построение дерева
+// РџРѕСЃС‚СЂРѕРµРЅРёРµ РґРµСЂРµРІР°
 void HuffmanTree::assembleTree(const size_t* frequencies, const unsigned int& size)
 {
 	std::priority_queue<std::shared_ptr<Node>, std::vector<std::shared_ptr<Node>>, HuffmanComparator> queue;
 
-	// Создание узлов
+	// РЎРѕР·РґР°РЅРёРµ СѓР·Р»РѕРІ
 	for (unsigned int numberSymbol = 0; numberSymbol < size; numberSymbol++)
 	{
 		if (frequencies[numberSymbol] != 0)
@@ -17,7 +17,7 @@ void HuffmanTree::assembleTree(const size_t* frequencies, const unsigned int& si
 
 	nSymbol_ = queue.size();
 
-	// Построение дерева
+	// РџРѕСЃС‚СЂРѕРµРЅРёРµ РґРµСЂРµРІР°
 	while (queue.size() != 1)
 	{
 		std::shared_ptr<Node> node = std::make_shared<Node>();
@@ -36,7 +36,7 @@ void HuffmanTree::assembleTree(const size_t* frequencies, const unsigned int& si
 	queue.pop();
 }
 
-// Получение массива кодов символов
+// РџРѕР»СѓС‡РµРЅРёРµ РјР°СЃСЃРёРІР° РєРѕРґРѕРІ СЃРёРјРІРѕР»РѕРІ
 void HuffmanTree::getCodes(CodeVector* codes) const
 {
 	CodeVector code;
@@ -44,7 +44,7 @@ void HuffmanTree::getCodes(CodeVector* codes) const
 	getCodes(codes, code, root_);
 }
 
-// Получение массива кодов символов
+// РџРѕР»СѓС‡РµРЅРёРµ РјР°СЃСЃРёРІР° РєРѕРґРѕРІ СЃРёРјРІРѕР»РѕРІ
 void HuffmanTree::getCodes(CodeVector* codes, CodeVector& code, const std::shared_ptr<Node>& current) const
 {
 	if (current->left_ != nullptr)
@@ -71,7 +71,7 @@ void HuffmanTree::getCodes(CodeVector* codes, CodeVector& code, const std::share
 	}
 }
 
-// Вывод раскодированной строки
+// Р’С‹РІРѕРґ СЂР°СЃРєРѕРґРёСЂРѕРІР°РЅРЅРѕР№ СЃС‚СЂРѕРєРё
 void HuffmanTree::outputDecodingData(std::istream& in, std::ostream& out) const
 {
 	std::shared_ptr<Node> currentNode = root_;

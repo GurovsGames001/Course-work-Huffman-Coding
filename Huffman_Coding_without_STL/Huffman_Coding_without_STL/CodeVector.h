@@ -1,4 +1,4 @@
-#ifndef _CODE_VECTOR_H
+﻿#ifndef _CODE_VECTOR_H
 #define _CODE_VECTOR_H
 #include "exceptions.h"
 

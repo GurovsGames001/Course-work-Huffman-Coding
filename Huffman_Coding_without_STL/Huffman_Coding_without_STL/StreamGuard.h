@@ -1,4 +1,4 @@
-#ifndef _STREAM_GUARD_H
+﻿#ifndef _STREAM_GUARD_H
 #define _STREAM_GUARD_H
 #include <iostream>
 

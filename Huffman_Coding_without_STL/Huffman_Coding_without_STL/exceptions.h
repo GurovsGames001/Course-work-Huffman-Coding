@@ -1,9 +1,9 @@
-#ifndef __EXCEPTION
+п»ї#ifndef __EXCEPTION
 #define __EXCEPTION
 #include <exception>
 
 ///////////////////////////////////////////////
-// Исключения для CodeVector
+// РСЃРєР»СЋС‡РµРЅРёСЏ РґР»СЏ CodeVector
 class CodeVectorOverflow : public std::exception
 {
 public:
